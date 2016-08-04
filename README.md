@@ -1,69 +1,13 @@
-# Fully Made Version of DKAN
-This is a version of DKAN that has already been "made" with drush make. It includes Drupal core as well as the DKAN installation profile which can be found in "profiles/dkan".
+# Rhode Island Transparency Portal
+[DKAN](http://demo.getdkan.com/) is the Drupal-specific version of [CKAN](http://ckan.org/), an open source data portal and data management system. Build instructions with a [Vagrant virtual development environment](https://www.vagrantup.com/) can be found [here](https://github.com/Designist/DKAN_Vagrant). In 2017, this site is slated to replace [Rhode Island's transparency portal](http://www.transparency.ri.gov/), which stores municipal finance data, as well as various other state expenditures.
 
-To install, follow the same directions as Drupal core: https://www.drupal.org/documentation/install
+## Using this Repository
+This repository is a *development build* of the final site and is *not* intended to be used as a production site. Follow the instructions in my [DKAN Vagrant repository](https://github.com/Designist/DKAN_Vagrant) and visit dkan-test.local.com to view the site. You can then add this repository as a remote and pull from it. Pulled modules will need to be enabled, either via the admin UI or with `drush en`.
 
-See the main DKAN repository for further instructions, support, and community: http://github.com/nucivic/dkan
+## Curent Projects
+Most of the current work on this website involves the upload interface, which is significantly more complicated than the upload interfaces of services like [Airtable](https://airtable.com/), [Screendoor](https://www.dobt.co/screendoor/), and [Typeform](https://www.typeform.com/). If we use one of these third-party services for data uploading, we'll need to use a webhook service like [Zapier](https://zapier.com/app/explore) to transfer data to the DKAN site.
 
-# DKAN on Pantheon
+We're also currently working on a redesign, based on some of the comments on [this issue](https://github.com/Designist/DKAN/issues/3). While the current site has a number of bugs, several of them seem to disappear on non-Vagrant build versions of DKAN, such as [this one](http://testmunicipalwnxxm9jfdc.devcloud.acquia-sites.com/) on Acquia Devcloud.
 
-This is a fork based on [Pantheon DROPs](https://github.com/pantheon-systems/drops-7)
-
-## How to update Drupal Drop from Pantheon Git Repository
-
-Just for the first time, add the pantheon base drop repo as a remote
-```bash
-git remote add pantheon https://github.com/pantheon-systems/drops-7.git
-```
-
-Any time you want to integrate their changes into this repo
-
-```bash
-# Make a branch so we can test if their work pass our testing
-git checkout -b updating_from_pantheon_drops
-# Pull their master into your branch (solve conflicts if any)
-git merge pantheon/master -X theirs
-# Push changes and wait for travis to run the build on the 'updating_from_pantheon_drops' branch.  
-git push origin updating_from_pantheon_drops
-```
-
-Fix any issues with the build (if any) pushing commits. When everything is ok squash all your fix commits into one. Then:
-
-```bash
-# Checkout master
-git checkout master
-# Rebase changes from your branch
-git rebase updating_from_pantheon_drops
-# Push
-git push origin master
-# Delete integration branch
-git push origin :updating_from_pantheon_drops
-```
-
-## How to update dkan profile
-
-```bash
-# Make a branch so we can test the travis build sep
-git checkout -b rebuilding_dkan_profile
-# Run dkan update script
-cd scripts
-./rebuild-dkan.sh
-# Add, Commit, Push and check the travis build for the 'rebuilding_dkan_profile' branch
-git add ../profiles/dkan -A
-git commit -m "Rebuilding dkan"
-git push origin rebuilding_dkan_profile
-```
-
-Fix any issues with the build (if any) pushing commits. When everything is ok squash all your fix commits into one. Then:
-
-```bash
-# Checkout master
-git checkout master
-# Rebase changes from your branch
-git rebase rebuilding_dkan_profile
-# Push
-git push origin master
-# Delete integration branch
-git push origin :rebuilding_dkan_profile
-```
-
+## Resources
+* 
